@@ -5,43 +5,35 @@ using System;
 public class Box : MonoBehaviour
 {
     [SerializeField] private BoxCatcher _catcher;
-
     private Rigidbody2D _rigidBody;
     private TransformAnimator _transformAnimator;
+    private BoxStateMachine _boxStateMachine;
 
+// да да не работает
     public event Action Falled;
 
     private void Awake()
     {
         _transformAnimator = GetComponent<TransformAnimator>();
         _rigidBody = GetComponent<Rigidbody2D>();
+        _boxStateMachine = new BoxStateMachine(transform, _catcher, _rigidBody, _transformAnimator);
     }
 
     private void Update()
     {
-        // кал
-        if (this.transform.position.y < -8 && _rigidBody.bodyType == RigidbodyType2D.Dynamic)
-        {
-            Falled.Invoke();
-        }
+        _boxStateMachine.Update();
     }
 
-// унести бы куда нить
 // родитель меняется снаружи - оч плох
     public BoxCatcher IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
     {
-        _rigidBody.bodyType = RigidbodyType2D.Static;
-        _transformAnimator.TransformTowards(localPosition, Quaternion.identity, onSuccess);
-        _catcher.Activate();
-        return _catcher;
+        return _boxStateMachine.IntegrateToBuilding(localPosition, onSuccess);
     }
 
     public void Reset()
     {
-        _transformAnimator.Reset();
-        _catcher.Deactivate();
+        _boxStateMachine.Reset();
 
-        _rigidBody.bodyType = RigidbodyType2D.Dynamic;
         _rigidBody.velocity = new Vector2();
         _rigidBody.angularVelocity = 0;
 

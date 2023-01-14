@@ -22,7 +22,7 @@ public class BoxCatcher : MonoBehaviour
     private void CatchBox(Box box, Vector2 point)
     {
         BoxCatched?.Invoke(box, point);
-        Deactivate();
+        // Deactivate();
     }
 
     public void Deactivate()

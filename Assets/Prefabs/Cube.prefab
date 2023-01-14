@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 3402351663217568178}
   - component: {fileID: 3402351663217568182}
   - component: {fileID: 3402351663217568181}
-  - component: {fileID: 3402351663217568183}
   - component: {fileID: 5030553424133645770}
+  - component: {fileID: 866079496308583580}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -135,19 +135,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 0.99999994}
   m_EdgeRadius: 0
---- !u!114 &3402351663217568183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3402351663217568176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d5d6211f07ea5e099f55e9d231aecf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _catcher: {fileID: 3262757058267827046}
 --- !u!114 &5030553424133645770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +147,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f14c0a147adc6ac89607460249005d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &866079496308583580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3402351663217568176}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 036ac1d0ea846c3199874d9fb625014d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _catcher: {fileID: 2519694096209380167}
 --- !u!1 &3486587987429299518
 GameObject:
   m_ObjectHideFlags: 0
@@ -170,7 +170,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4728389159444909994}
   - component: {fileID: 7152767133863183972}
-  - component: {fileID: 3262757058267827046}
+  - component: {fileID: 2519694096209380167}
   m_Layer: 0
   m_Name: BoxCather
   m_TagString: Untagged
@@ -219,7 +219,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.01, y: 0.148202}
   m_EdgeRadius: 0
---- !u!114 &3262757058267827046
+--- !u!114 &2519694096209380167
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -228,6 +228,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 3486587987429299518}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dfb6c456fcd57129bd50d0f55db7c7f, type: 3}
+  m_Script: {fileID: 11500000, guid: ff345dc33fff77d14be5f3742bfdae11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
