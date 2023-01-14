@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class TransformAnimator : MonoBehaviour
 {
+    [SerializeField] private readonly float _translationSpeed = 4.0f;
+    [SerializeField] private readonly float _rotationSpeed = 200.0f;
+
     private Vector3 _targetPosition;
     private Quaternion _targetRotation;
     private bool _isTransforming = false;
-
-    [SerializeField] private readonly float _translationSpeed = 4.0f;
-    [SerializeField] private readonly float _rotationSpeed = 200.0f;
 
     public delegate void OnSuccessCallback();
 

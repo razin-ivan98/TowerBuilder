@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BoxStateMachine: IStateSwitcher, IBoxBahaviour
+public sealed class BoxStateMachine: IStateSwitcher, IBoxBahaviour
 {
     private BaseBoxState[] _states; 
     private BaseBoxState _state;
@@ -17,7 +17,7 @@ public class BoxStateMachine: IStateSwitcher, IBoxBahaviour
         _boxCatcher = boxCatcher;
         _rigidBody = rigidBody;
         _trasnformAnimator = transformAnimator;
-        _states = new BaseBoxState[]{ new FallingBoxState(_boxCatcher, _transform, _rigidBody, this, _trasnformAnimator),
+        _states = new BaseBoxState[] { new FallingBoxState(_boxCatcher, _transform, _rigidBody, this, _trasnformAnimator),
                                       new CatchingBoxState(_boxCatcher, _transform, _rigidBody, this),
                                       new PassiveBoxState(_boxCatcher, _transform, _rigidBody, this) };
     }
@@ -27,9 +27,9 @@ public class BoxStateMachine: IStateSwitcher, IBoxBahaviour
         _state.Update();
     }
 
-    public BoxCatcher IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
+    public void IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
     {
-        return _state.IntegrateToBuilding(localPosition, onSuccess);
+        _state.IntegrateToBuilding(localPosition, onSuccess);
     }
 
     public void SwitchState<T>() where T : BaseBoxState

@@ -9,7 +9,7 @@ public interface IStateSwitcher
 public interface IBoxBahaviour
 {
     void Update();
-    BoxCatcher IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess);
+    void IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess);
 }
 
 public abstract class BaseBoxState: IBoxBahaviour
@@ -31,13 +31,16 @@ public abstract class BaseBoxState: IBoxBahaviour
         _switcher = switcher;
     }
 
-    abstract public void Update();
+    virtual public void Update() {}
 
-    abstract public BoxCatcher IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess);
+    virtual public void IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
+    {
+        throw new System.NotImplementedException("It is not possible to integrate Box to Building in this state");
+    }
 
-    abstract public void Start();
+    virtual public void Start() {}
 
-    abstract public void Stop();
+    virtual public void Stop() {}
 
     protected void Fall()
     {

@@ -1,8 +1,13 @@
 using UnityEngine;
 using System;
 
+public interface ICatchingActioned
+{
+    public event Action<Box, Vector2> BoxCatched;
+}
+
 [RequireComponent(typeof(Collider2D))]
-public class BoxCatcher : MonoBehaviour
+public class BoxCatcher : MonoBehaviour, ICatchingActioned
 {
     public event Action<Box, Vector2> BoxCatched;
     private Collider2D _collider;
@@ -22,7 +27,6 @@ public class BoxCatcher : MonoBehaviour
     private void CatchBox(Box box, Vector2 point)
     {
         BoxCatched?.Invoke(box, point);
-        // Deactivate();
     }
 
     public void Deactivate()

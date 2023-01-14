@@ -15,7 +15,7 @@ public class BoxesFactory : MonoBehaviour
     private void OnValidate()
     {
         if (!_boxPrefab.TryGetComponent<Box>(out _))
-            throw new System.Exception("Установленный префаб не является Box");
+            throw new System.Exception("Installed prefab is not a Box");
     }
 
     private GameObject CreateBox()

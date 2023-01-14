@@ -21,7 +21,7 @@ public class Crane : MonoBehaviour
     private void OnValidate()
     {
         if (!_building)
-            throw new System.Exception("Building не определено");
+            throw new System.Exception("Building in not defined");
     }
 
     public void Release()

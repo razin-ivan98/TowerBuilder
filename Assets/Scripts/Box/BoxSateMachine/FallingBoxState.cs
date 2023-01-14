@@ -32,13 +32,12 @@ public sealed class FallingBoxState: BaseBoxState
             Fall();
     }
 
-    public override BoxCatcher IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
+    public override void IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
     {
         _rigidBody.bodyType = RigidbodyType2D.Static;
         _transformAnimator.TransformTowards(localPosition, Quaternion.identity, () => {
             onSuccess();
             _switcher.SwitchState<CatchingBoxState>();
         } );
-        return _boxCatcher;
     }
 }

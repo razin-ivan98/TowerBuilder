@@ -3,22 +3,19 @@ using UnityEngine;
 public class BuilderBoxPositioner
 {
     private BoxesContainer _boxesContainer;
-    private BuildingBoxesRegister _register;
 
-    public BuilderBoxPositioner(BoxesContainer boxesContainer, BuildingBoxesRegister register)
+    public BuilderBoxPositioner(BoxesContainer boxesContainer)
     {
         _boxesContainer = boxesContainer;
-        _register = register;
     }
 
-    public BoxCatcher IntegrateBox(Box box, Vector2 point, float height)
+    public void IntegrateBox(Box box, Vector2 point, float height)
     {
         box.transform.SetParent(_boxesContainer.transform);
 
         Vector3 newBoxPosition = CalculateBoxPosition(box.transform, point, height);
-        _register.Register(box);
     
-        return box.IntegrateToBuilding(newBoxPosition, () => _boxesContainer.moveDown() );
+        box.IntegrateToBuilding(newBoxPosition, () => _boxesContainer.moveDown() );
     }
 
     private Vector3 CalculateBoxPosition(Transform boxTransform, Vector3 pivotPoint, float height)

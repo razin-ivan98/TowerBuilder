@@ -12,6 +12,8 @@ public class Box : MonoBehaviour
 // да да не работает
     public event Action Falled;
 
+    public ICatchingActioned Catcher => _catcher;
+
     private void Awake()
     {
         _transformAnimator = GetComponent<TransformAnimator>();
@@ -25,9 +27,9 @@ public class Box : MonoBehaviour
     }
 
 // родитель меняется снаружи - оч плох
-    public BoxCatcher IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
+    public void IntegrateToBuilding(Vector3 localPosition, TransformAnimator.OnSuccessCallback onSuccess)
     {
-        return _boxStateMachine.IntegrateToBuilding(localPosition, onSuccess);
+        _boxStateMachine.IntegrateToBuilding(localPosition, onSuccess);
     }
 
     public void Reset()

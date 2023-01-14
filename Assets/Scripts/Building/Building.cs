@@ -11,7 +11,7 @@ public class Building : MonoBehaviour
     private BuildingBoxesRegister _register;
     private InstabilityCalculator _instabilityCalculator;
     private BuilderBoxPositioner _boxPositioner;
-    private BoxCatcher _catcher;
+    private ICatchingActioned _catcher;
     public event Action<int> ScoreChanged;
 
     public void Start()
@@ -22,7 +22,7 @@ public class Building : MonoBehaviour
         // ну такое, хотя бы валидацию
         _boxesContainer = GetComponentInChildren<BoxesContainer>();
 
-        _boxPositioner = new BuilderBoxPositioner(_boxesContainer, _register);
+        _boxPositioner = new BuilderBoxPositioner(_boxesContainer);
 
         // выкинуть этот кал
 
@@ -35,11 +35,12 @@ public class Building : MonoBehaviour
         _gameData.Height = 3;
     }
 
-
     public void AddBox(Box box, Vector2 point)
     {
         _catcher.BoxCatched -= AddBox;
-        _catcher = _boxPositioner.IntegrateBox(box, point, _gameData.Height);
+        _boxPositioner.IntegrateBox(box, point, _gameData.Height);
+        _register.Register(box);
+        _catcher = box.Catcher;
         _catcher.BoxCatched += AddBox;
 
         updateInstability();
@@ -47,8 +48,6 @@ public class Building : MonoBehaviour
 
         ScoreChanged?.Invoke(_gameData.Height);
     }
-
-    
 
     private void updateInstability()
     {
